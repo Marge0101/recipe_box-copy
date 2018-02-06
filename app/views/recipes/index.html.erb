@@ -1,0 +1,7 @@
+<h1>Recipes Box</h1>
+<ul>
+  <% @recipe.each do |recipe| %>
+    <h2><%= link_to recipe.title, recipe %></h2>
+  <% end %>
+</ul>
+

@@ -1,0 +1,13 @@
+<h1><%= @recipe.title %></h1>
+<p class="description"><%= @recipe.description %></p>
+<% if @recipe.picture? %>
+    <div class="thumbnail">
+      <%= image_tag @recipe.picture.url %>
+    </div>
+  <% end %>
+<p>Submitted by </p>
+
+<%= link_to "Back", root_path, class: "btn btn-default" %>
+<%= link_to "Edit", edit_recipe_path, class: "btn btn-default" %>
+<%= link_to "Delete", recipe_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
+

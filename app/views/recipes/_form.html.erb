@@ -1,0 +1,43 @@
+<%= form_for(@recipe) do |f| %>
+  <% if @recipe.errors.any? %>
+    <div id="error_explanation">
+        <div id="errors">
+		<p><%= @recipe.errors.count %> Prevented this recipe from saving </p>
+	</div>
+	<% end %>
+      <ul>
+        <% @recipe.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+      </ul>
+      <% end %>
+    </div>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  
+  <div class="field">
+    <% if @recipe.picture? %>
+      <div class="thumbnail">
+        <%= image_tag @recipe.picture.url %>
+      </div>
+    <% end %><br>
+    <%= f.label :picture %><br>
+    <%= f.file_field :picture, accept: 'image/jpeg,image/git,image/png' %>
+    <%= f.hidden_field :picture_cache %>
+  </div>
+
+<div class="field">
+  <%= f.submit %>
+<% end %>
+
+<script type="text/javascript">
+$('#picture_file').bind('change', function() {
+  var size_in_megabytes = this.files[0].size/1024/1024;
+  if (size_in_megabytes > 1) {
+    alert('Maximum file size is 5MB. Please choose a smaller file.');
+  }
+});
+</script>
